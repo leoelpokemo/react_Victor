@@ -6,7 +6,7 @@ app.use(express.json());
 connectDB();
 
 //Create
-app.post("/ceateCard", async (req, res) => {
+app.post("/createCard", async (req, res) => {
   try {
     const card = await Card.create(req.body);
     console.log(card);
