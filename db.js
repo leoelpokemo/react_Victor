@@ -1,5 +1,8 @@
 import  mongoose  from "mongoose";
-const MONGO_URI = "mongodb://localhost:27017/terceroa"
+import dotenv from "dotenv";
+dotenv.config();
+
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/terceroa"
 
 export const connectDB = async () => {
   try {
