@@ -26,7 +26,7 @@ app.get("/getAllCards", async (req, res) => {
     console.error(error);
     res.status(500).send("Error retrieving cards");
   }
-}); 
+});
 app.get("/getCard/:id", async (req, res) => {
   try {
     const { id } = req.params; // obtenemos el ID de la URL
@@ -39,10 +39,10 @@ app.get("/getCard/:id", async (req, res) => {
     console.error(error);
     res.status(500).send("Error retrieving cards");
   }
-}); 
+});
 
 //UPDATE
-app.put("/cards/:id", async (req, res) => {
+app.put("/updateEntireCard/:id", async (req, res) => {
   try {
     const { id } = req.params; // obtenemos el ID de la URL
     const updates = req.body; //  los campos que quieres actualizar
@@ -66,8 +66,31 @@ app.put("/cards/:id", async (req, res) => {
   }
 });
 
+app.patch("/updateCard/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+
+    const updatedCard = await Card.findByIdAndUpdate(id, updates, {
+      new: true,
+    });
+
+    if (!updatedCard) {
+      return res.status(404).json({ message: "Card not found" });
+    }
+
+    res.status(200).json({
+      message: "Card updated successfully",
+      data: updatedCard,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error updating card" });
+  }
+});
+
 //DELETE
-app.delete("/cards/:id", async (req, res) => {
+app.delete("/deleteCard/:id", async (req, res) => {
   try {
     const { id } = req.params; //  se lee el ID de la URL
     const deletedCard = await Card.findByIdAndDelete(id); // se elimina la tarjeta por id
@@ -81,7 +104,6 @@ app.delete("/cards/:id", async (req, res) => {
     res.status(500).json({ message: "Error deleting card" });
   }
 });
-
 
 //ENDPOINT
 app.get("/hola", (req, res) => {
