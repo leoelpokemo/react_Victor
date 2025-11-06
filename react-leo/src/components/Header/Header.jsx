@@ -1,10 +1,12 @@
-import "./Header.css";
+import logo from "../../images/logo-mexico.jpg";
+import "./Header.css";  
 
-function Header({companyName}) {
+function Header() {
   return (
     <>
       <header className="header">
-        <h1 className="header__title">{companyName}</h1>
+        <img className="header__logo" src={logo} />
+        <h1>Mexico Magico</h1>
       </header>
     </>
   );

@@ -1,5 +1,14 @@
 .header{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 32px;
-    color: red;
+    min-height: 120px;
+    font-family: "Inter", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.2);
+    color: white;
+    justify-content: flex-start;
+}
+.header__logo{
+    height: 66px;
+    width: 346px;
+    object-fit: contain;
 }
